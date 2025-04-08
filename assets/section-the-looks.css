@@ -1,0 +1,61 @@
+.the-looks {
+  margin: 0 auto;
+  text-align: center;
+  max-width: 83rem;
+  padding-left: 8%;
+  padding-right: 8%;
+}
+
+.the-looks > .title,
+.the-looks > .collection-title {
+  text-transform: uppercase;
+}
+
+.the-looks > .title {
+  font-size: 1.8rem;
+  line-height: 2.25rem;
+  font-weight: 600;
+}
+
+.the-looks > .subtitle {
+  font-weight: 300;
+}
+
+.the-looks > .collection-title {
+  margin: 1.5rem auto 4.5rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  border-bottom: none !important;
+}
+
+.the-looks .look {
+  text-align: left;
+}
+
+.the-looks .look::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0.25rem;
+  background-color: #000;
+  opacity: 0;
+  transition: opacity 0.3s ease-out;
+}
+
+.the-looks .look:hover::after,
+.the-looks .look:focus::after {
+  opacity: 1;
+}
+
+.look__number {
+  font-size: .9rem;
+}
+
+@media screen and (max-width: 980px) {
+  .the-looks {
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+}
