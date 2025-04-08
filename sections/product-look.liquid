@@ -1,0 +1,80 @@
+{{ 'section-product-look.css' | asset_url | stylesheet_tag }}
+
+<div class="look-details">
+  <div class="look-details__wrapper">
+    <div class="look-details__media">
+      <img 
+          src="{{ product.media[1] | image_url }}" 
+          loading="lazy"
+          alt="{{ product.title | escape }}"
+        >
+    </div>
+    <div class="look-details__products">
+      <div class="look-details__header">
+        <h1 class="look-details__title">
+          <span class="look-details__look-index">{{ product.title }}</span>
+          <span class="look-details__collection-title">{{ collection.title }}</span>
+        </h1>
+      </div>
+      <div class="look-details__selection">
+        <div class="look-details__block-one">
+          <div class="look-details__item">
+            <a href="{{ product.media[2].alt }}">
+              <img src="{{ product.media[2] | image_url }}">
+            </a>
+            {% assign filename = product.media[2] | image_url | split: '-' | last | split: '.' | first | replace: '_', ' ' %}
+            <span class="look-details__item-title">{{ filename }}</span>
+          </div>
+        </div>
+        <div class="look-details__block-last">
+          <div class="look-details__block-column">
+            <div class="look-details__item">
+              <a href="{{ product.media[3].alt }}">
+                <img src="{{ product.media[3] | image_url }}">
+              </a>
+              {% assign filename = product.media[3] | image_url | split: '-' | last | split: '.' | first | replace: '_', ' ' %}
+              <span class="look-details__item-title">{{ filename }}</span>
+            </div> 
+            <div class="look-details__item">
+              <a href="{{ product.media[5].alt }}">
+                <img src="{{ product.media[5] | image_url }}">
+              </a>
+              {% assign filename = product.media[5] | image_url | split: '-' | last | split: '.' | first | replace: '_', ' ' %}
+              <span class="look-details__item-title">{{ filename }}</span>
+            </div> 
+            <div class="look-details__item">
+              <a href="{{ product.media[7].alt }}">
+                <img src="{{ product.media[7] | image_url }}">
+              </a>
+              {% assign filename = product.media[7] | image_url | split: '-' | last | split: '.' | first | replace: '_', ' ' %}
+              <span class="look-details__item-title">{{ filename }}</span>
+            </div> 
+          </div>          
+          <div class="look-details__block-column">
+            <div class="look-details__item">
+              <a href="{{ product.media[4].alt }}">
+                <img src="{{ product.media[4] | image_url }}">
+              </a>
+              {% assign filename = product.media[4] | image_url | split: '-' | last | split: '.' | first | replace: '_', ' ' %}
+              <span class="look-details__item-title">{{ filename }}</span>
+            </div> 
+            <div class="look-details__item">
+              <a href="{{ product.media[6].alt }}">
+                <img src="{{ product.media[6] | image_url }}">
+              </a>
+              {% assign filename = product.media[6] | image_url | split: '-' | last | split: '.' | first | replace: '_', ' ' %}
+              <span class="look-details__item-title">{{ filename }}</span>
+            </div> 
+            <div class="look-details__item">
+              <a href="{{ product.media[8].alt }}">
+                <img src="{{ product.media[8] | image_url }}">
+              </a>
+              {% assign filename = product.media[8] | image_url | split: '-' | last | split: '.' | first | replace: '_', ' ' %}
+              <span class="look-details__item-title">{{ filename }}</span>
+            </div> 
+          </div>          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
