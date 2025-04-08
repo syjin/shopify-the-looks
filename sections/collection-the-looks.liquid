@@ -1,0 +1,111 @@
+{{ 'section-the-looks.css' | asset_url | stylesheet_tag }}
+
+<section class="the-looks" data-section-id="{{ section.id }}" data-aos="{{ settings.scroll_animation }}">
+  <h1 class="title">The Looks</h1>
+  <p class="subtitle">All the silhouettes of the collection.</p>
+
+  <h1 class="collection-title">
+    {% if collection.handle == 'all' %}
+      {{ 'collections.general.all_products' | t }}
+    {% else %}
+      {{ collection.title }}
+    {% endif %}
+  </h1>
+
+  {% case section.settings.grid %}
+    {% when 2 %}
+      {%- assign grid_item_width = 'desktop-6 tablet-3 mobile-half span-6' -%}
+    {% when 3 %}
+      {%- assign grid_item_width = 'desktop-4 tablet-2 mobile-half span-4' -%}
+    {% when 4 %}
+      {%- assign grid_item_width = 'desktop-3 tablet-2 mobile-half span-3' -%}
+    {% when 5 %}
+      {%- assign grid_item_width = 'desktop-fifth tablet-2 mobile-half span-one-fifth' -%}
+      <style>
+        @media screen and ( min-width: 981px ) {
+          @supports (display: grid) {
+            .collection-page-{{ section.id }} .product-loop.grid_wrapper {
+                grid-template-columns: repeat(5, 1fr);
+            }
+          }
+        }
+        @media screen and ( min-width: 741px ) and ( max-width: 980px ) {
+          @supports (display: grid) {
+            .collection-page-{{ section.id }} .product-loop.grid_wrapper {
+                grid-template-columns: repeat(3, 1fr);
+            }
+          }
+        }
+        @media screen and ( max-width: 740px ) {
+        @supports (display: grid) {
+          .collection-page-{{ section.id }} .product-loop.grid_wrapper {
+              grid-template-columns: repeat(2, 1fr);
+          }
+        }
+      }
+      </style>
+    {% when 6 %}
+      {%- assign grid_item_width = 'desktop-2 tablet-2 mobile-half span-2' -%}
+    {% endcase %}
+
+  <div class="look-container grid_wrapper product-loop{% if section.settings.infinite_scroll %} is_infinite{% endif %}">
+    {% for product in collection.products %}
+      <!-- <div class="look"> -->
+        <!-- <div class="look-item"> -->
+        <div class="{{ grid_item_width }} product-index look" id="prod-{{ product.id }}" data-alpha="{{ product.title }}" data-price="{{ product.price }}" data-aos="{{ settings.scroll_animation }}" data-product-id="{{ product.id }}">
+    <div class="look__number">{{ forloop.index }}</div>
+          {% render 'the-looks-listing', collection: collection, product: product %}
+        </div>
+      <!-- </div> -->
+    {% endfor %}
+    <style media="screen">
+    {% if section.settings.grid == 2 %}
+      .collection-page-{{ section.id }} .product-index:nth-child(2n + 1) {
+        clear:left;
+      }
+    {% elsif section.settings.grid == 3 %}
+      .collection-page-{{ section.id }} .product-index:nth-child(3n + 1) {
+        clear:left;
+      }
+    {% elsif section.settings.grid == 4 %}
+      .collection-page-{{ section.id }} .product-index:nth-child(4n + 1) {
+        clear:left;
+      }
+    {% elsif section.settings.grid == 5 %}
+      .collection-page-{{ section.id }} .product-index:nth-child(5n + 1) {
+        clear:left;
+      }
+    {% elsif section.settings.grid == 6 %}
+      .collection-page-{{ section.id }} .product-index:nth-child(6n + 1) {
+        clear:left;
+      }
+    {% endif %}
+    </style>
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "The Looks",
+    "settings": [
+          {
+      "type": "range",
+      "id": "grid",
+      "min": 2,
+      "max": 6,
+      "step": 1,
+      "label": "Products per row",
+      "default":4
+    },
+    {
+      "type": "range",
+      "id": "products_per_page",
+      "min": 12,
+      "max": 48,
+      "step": 1,
+      "label": "Products per page",
+      "default":30
+    },
+    ]
+  }
+{% endschema %}
